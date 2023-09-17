@@ -34,36 +34,64 @@ static void printMenu(void)
 
 void menuChoiceAppend()
 {
+   printf("NMec: ");
+   u_int32_t nmec;
+   scanf("%d", &nmec);
+
+   printf("Name: ");
+   char name[256];
+   scanf("%s", name);
+
+   list = append(list, nmec, name);
 }
 
 /* ******************************************** */
 
+/* n ->  <=>  (*n). */
 void menuChoicePrint()
 {
+   print(list);
 }
 
 /* ******************************************** */
 
 void menuChoiceRemove()
 {
+   printf("NMec: ");
+   u_int32_t nmec;
+   scanf("%d", &nmec);
+
+   list = remove(list, nmec);
 }
 
 /* ******************************************** */
 
 void menuChoiceSearch()
 {
+   printf("NMec: ");
+   u_int32_t nmec;
+   scanf("%d", &nmec);
+
+   const char *name = search(list, nmec);
+
+   if (name == NULL)
+      printf("Student not found!\n");
+   else
+      printf("Student name: %s\n", name);
 }
 
 /* ******************************************** */
 
 void menuChoiceSortByName()
 {
+   print(sort_by_name(list));
 }
 
 /* ******************************************** */
 
 void menuChoiceSortByNumber()
 {
+   print(sort_by_number(list));
 }
 
 /* ******************************************** */
