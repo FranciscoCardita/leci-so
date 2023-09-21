@@ -23,7 +23,7 @@ int main(void)
   {
     printf("I'm the parent: PID = %d, PPID = %d\n", getpid(), getppid());
     usleep(20000);
-    // pwait(NULL);
+    pwait(NULL);
   }
 
   return EXIT_SUCCESS;
