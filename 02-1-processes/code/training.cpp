@@ -11,7 +11,7 @@ int main(void)
 {
     pid_t ret =  pfork();
 
-    for (u_int8_t i = 1; i <= 20; i++)
+    for (u_int32_t i = 1; i <= 20; i++)
     {
         if (ret == 0 && i <= 10)
             printf("I'm the child: %d\n", i);
