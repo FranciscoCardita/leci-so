@@ -69,7 +69,9 @@ void consumer(uint32_t id, FIFO *f)
         fifoRetrieve(f, &pid, &v1, &v2);
 
         /* print it */
-        if (v1 == v2)
+        if (pid == 0 && v1 == 0 && v2 == 0)
+            return;
+        else if (v1 == v2)
             printf("\e[32;01mConsumer %u retrieve (%u,%u,%u) from the fifo\e[0m\n", id, pid, v1, v2);
         else
             printf("\e[31;01mConsumer %u retrieve (%u,%u,%u) from the fifo\e[0m\n", id, pid, v1, v2);
@@ -164,6 +166,11 @@ int main (int argc, char *argv[])
     {
         waitpid(ppid[i], NULL, 0);
         printf("Producer %u finished\n", i+1);
+    }
+
+    for (uint32_t i = 0; i < nc; i++)
+    {
+        fifoInsert(theFifo, 0, 0, 0);
     }
 
     /* wait for consumers fo finish */
