@@ -19,7 +19,7 @@
 #include  "settings.h"
 
 // TODO point: uncomment the desired implementation
-//#include "thread.h"
+#include "thread.h"
 //#include "process.h"
 
 typedef struct
@@ -32,7 +32,10 @@ typedef struct
    int inp;  ///< point of insertion (queue tail)
    int out;  ///< point of retrieval (queue head)
    int cnt;  ///< number of items stored
-   // TODO point: if necessary, add synchronization declarations here
+   
+   pthread_mutex_t access;
+   pthread_cond_t fifoNotEmpty;
+   pthread_cond_t fifoNotFull;
 } PriorityFIFO;
 
 void init_pfifo(PriorityFIFO* pfifo);
