@@ -125,6 +125,10 @@ int nurse_iteration(int id) // return value can be used to request termination
    check_valid_nurse(id);
    printf("\e[34;01mNurse %d: get next patient\e[0m\n", id);
    int patient = retrieve_pfifo(&hd->triage_queue);
+   
+   if (patient == DUMMY_ID)
+      exit(EXIT_SUCCESS);
+
    check_valid_patient(patient);
    // TODO point: PUT YOUR NURSE TERMINATION CODE HERE:
    printf("\e[34;01mNurse %d: evaluate patient %d priority\e[0m\n", id, patient);
@@ -143,6 +147,10 @@ int doctor_iteration(int id) // return value can be used to request termination
    check_valid_doctor(id);
    printf("\e[32;01mDoctor %d: get next patient\e[0m\n", id);
    int patient = retrieve_pfifo(&hd->doctor_queue);
+   
+   if (patient == DUMMY_ID)
+      exit(EXIT_SUCCESS);
+
    check_valid_patient(patient);
    // TODO point: PUT YOUR DOCTOR TERMINATION CODE HERE:
    printf("\e[32;01mDoctor %d: treat patient %d\e[0m\n", id, patient);
